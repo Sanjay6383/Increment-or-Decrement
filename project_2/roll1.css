@@ -1,0 +1,19 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+#roll{
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 50px;
+}
+#roll:hover{
+    background-color: red;
+    color: white;
+}
+
+#output, #output_1{
+    font-size: 70px;
+}
