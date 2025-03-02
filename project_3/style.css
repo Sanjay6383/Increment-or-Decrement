@@ -1,0 +1,40 @@
+#outer {
+    background-color: rgba(255, 230, 230, 0.964);
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    width: 28%;
+    height: 40%;
+    position: absolute;
+    left: 33%;
+    top: 10%;
+}
+h1 {
+    color: rgb(9, 166, 197);
+    text-align: center;
+}
+
+#input {
+    position: relative;
+    left: 120px;
+    border-radius: 5px;
+    padding: 8px;
+}
+#ctf, #ftc,button,label {
+    position: relative;
+    left: 100px;
+    font-size: 25px;
+}
+button{
+    padding: 4px;
+    left: 160px;
+    position: relative;
+    font-size: 20px;
+    color: red;
+}
+button:hover {
+    background-color: rgb(68, 185, 1);
+}
+#result{
+    text-align: center;
+}
