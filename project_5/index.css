@@ -1,0 +1,12 @@
+div{
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    box-shadow: 5px 5px 5px 5px rgb(217, 217, 217);
+    text-align: center;
+    font-size: 40px;
+    background-color: rgb(224, 204, 204);
+}
