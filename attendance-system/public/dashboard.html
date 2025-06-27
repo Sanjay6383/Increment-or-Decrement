@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+    <header>
+        <h1>Attendance Management</h1>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+    </header>
+    
+    <!-- Add the date controls here -->
+    <div class="date-controls">
+        <label for="datePicker">Select Date:</label>
+        <input type="date" id="datePicker" class="date-input">
+        <button id="viewBtn" class="view-btn">View</button>
+    </div>
+    
+    <div class="date-display">
+        <h2 id="currentDate" class="current-date"></h2>
+    </div>
+    
+    <div class="attendance-table-container">
+        <table id="attendanceTable" class="attendance-table">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Class</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="studentList" class="student-list">
+                <!-- Students will be loaded here -->
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Add the history section here -->
+    <div class="history-section">
+        <h3 class="history-title">Attendance History</h3>
+        <div class="history-controls">
+            <label for="historyStudent" class="history-label">Student:</label>
+            <select id="historyStudent" class="history-select"></select>
+            
+            <label for="historyMonth" class="history-label">Month:</label>
+            <select id="historyMonth" class="history-select">
+                <option value="all">All Months</option>
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            
+            <button id="viewHistoryBtn" class="history-btn">View History</button>
+        </div>
+        <div id="historyResults" class="history-results"></div>
+    </div>
+
+    <div class="chart-section">
+    <h3>Attendance Summary</h3>
+    <canvas id="attendanceChart"></canvas>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    
+</body>
+</html>
