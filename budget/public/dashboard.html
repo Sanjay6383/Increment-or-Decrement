@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="top-bar">
+    <h2 id="username">Welcome, username</h2>
+
+    <div class="top-controls">
+      <div class="income-display"><strong>Income:</strong> ₹<span id="income-display">0</span></div>
+
+      <div id="income-input-section">
+        <input type="number" id="income-input" placeholder="Enter income" />
+        <button onclick="setIncome()">Set</button>
+      </div>
+
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="input-row">
+    <input type="text" id="description" placeholder="Description">
+    <input type="number" id="amount" placeholder="Amount">
+    <input type="date" id="date">
+    <button id="add-btn">Add</button>
+    <select id="view-mode">
+      <option value="">-- View Mode --</option>
+      <option value="day">Day-wise</option>
+      <option value="month">Month-wise</option>
+    </select>
+    <button onclick="viewExpenses()">View</button>
+
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id="income-table-body"></tbody>
+    <tfoot>
+      <tr>
+        <td>Total</td>
+        <td></td>
+        <td id="total"></td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
