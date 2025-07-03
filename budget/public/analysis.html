@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Expense Analysis</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="top-bar">
+    <h2>Expense Analysis</h2>
+    <button onclick="window.location.href='dashboard.html'" class="logout-btn">Back to Dashboard</button>
+  </div>
+
+  <div style="max-width: 1000px; margin: 30px auto;">
+    <h3 style="text-align:center; color: #00796b;">Monthly Expense Trend</h3>
+    <canvas id="monthlyChart" height="120"></canvas>
+    <br><br><br><br>
+    <h3 style="text-align:center; margin-top:40px; color: #00796b;">Spending by Category</h3>
+    <div style="display: flex; justify-content: center;">
+      <canvas id="categoryChart" width="600" height="600"></canvas>
+    </div>
+  </div>
+
+  <script>
+    
+   async function initPage() {
+    const res1 = await fetch('/get-total', {
+      method: 'POST'
+    });
+    const data1 = await res1.json();
+
+    await loadAnalysis(data1.total);
+  }
+
+
+    async function loadAnalysis(tot) {
+        const res = await fetch('/expense-analysis');
+        const data = await res.json();
+
+        const months = data.months.map(row => row.month);
+        const totals = data.months.map(row => row.total);
+
+        const ctx1 = document.getElementById('monthlyChart').getContext('2d');
+        new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: months,
+            datasets: [{
+            label: 'Total Expenses',
+            data: totals,
+            backgroundColor: 'rgba(0,150,136,0.2)',
+            borderColor: '#00796b',
+            borderWidth: 2,
+            fill: true
+            }]
+        }
+        });
+
+      const categories = data.categories.map(c => c.description);
+      const amounts = data.categories.map(c => c.total);
+
+      // Generate equally spaced colors using HSL
+      const generateColors = (count) => {
+        const colors = [];
+        for (let i = 0; i < count; i++) {
+          const hue = Math.round((360 / count) * i);
+          colors.push(`hsl(${hue}, 70%, 60%)`);
+        }
+        return colors;
+      };
+
+     const ctx2 = document.getElementById('categoryChart').getContext('2d');
+    new Chart(ctx2, {
+    type: 'pie',
+    data: {
+        labels: categories, // just the names
+        datasets: [{
+        data: amounts,
+        backgroundColor: generateColors(categories.length)
+        }]
+    },options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        plugins: {
+        tooltip: {
+            callbacks: {
+            label: function (context) {
+                const label = context.label || '';
+                const value = context.raw;
+                const percentage = ((value / tot) * 100).toFixed(1);
+                return `${label}: ₹${value} (${percentage}%)`;
+            }
+            }
+        }
+        }
+    }
+});
+}
+initPage();
+  </script>
+</body>
+</html>

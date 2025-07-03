@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Dashboard</title>
   <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
   <div id="top-bar">
@@ -11,14 +13,14 @@
 
     <div class="top-controls">
       <div class="income-display"><strong>Income:</strong> ₹<span id="income-display">0</span></div>
-
+      <div class="savings-display"><strong>Savings:</strong> ₹<span id="savings-display">0</span></div>
       <div id="income-input-section">
         <input type="number" id="income-input" placeholder="Enter income" />
         <button onclick="setIncome()">Set</button>
       </div>
-
       <button class="logout-btn" onclick="logout()">Logout</button>
-    </div>
+</div>
+
   </div>
 
   <div class="input-row">
@@ -32,6 +34,8 @@
       <option value="month">Month-wise</option>
     </select>
     <button onclick="viewExpenses()">View</button>
+    <button onclick="promptDownload()">Download</button>
+    <button onclick="window.location.href='analysis.html'">Analysis</button>
 
   </div>
 
@@ -54,6 +58,30 @@
       </tr>
     </tfoot>
   </table>
+
+  <!-- Modal for Monthly Details -->
+<div id="month-detail-modal" style="display: none;" class="modal-overlay">
+  <div class="modal-content">
+    <span id="close-month-modal" style="cursor:pointer; float:right;">&times;</span>
+    <h3>Daily Expenses for <span id="modal-month-label"></span></h3>
+    <div id="modal-details"></div>
+  </div>
+</div>
+
+
+<div id="chatbot-button" onclick="toggleChatbot()">💬</div>
+
+<div id="chatbot-popup">
+  <div class="chat-header">
+    <span>AI Budget Assistant</span>
+    <button onclick="toggleChatbot()">✖</button>
+  </div>
+  <div id="chatbot-messages" class="chat-body"></div>
+  <div class="chat-footer">
+    <input type="text" id="chat-input" placeholder="Ask something..." onkeydown="if(event.key==='Enter') sendChat()" />
+    <button onclick="sendChat()">Send</button>
+  </div>
+</div>
 
   <script src="script.js"></script>
 </body>
